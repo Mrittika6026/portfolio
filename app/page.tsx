@@ -40,7 +40,7 @@ function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = ["Journey", "Research", "Projects", "Experience", "Contact"];
+  const links = ["News", "Journey", "Research", "Projects", "Experience", "Contact"];
 
   return (
     <nav
@@ -122,6 +122,44 @@ function Hero() {
       >
         <div style={{ width: 1, height: 48, background: "var(--accent)", opacity: 0.4, margin: "0 auto" }} />
       </motion.div>
+    </section>
+  );
+}
+
+// ── News ─────────────────────────────────────────────────────────
+function News() {
+  const items = [
+    {
+      date: "Oct 2026",
+      text: "Achieved IELTS overall band 7.0, with no band below 6.5.",
+      link: "/CV_Mrittika_Roy.pdf",
+      linkLabel: "Updated CV",
+    },
+  ];
+
+  return (
+    <section id="news" style={{ padding: "6rem 2rem", maxWidth: 960, margin: "0 auto" }}>
+      <FadeIn>
+        <SectionLabel text="News" />
+        <h2 className="font-display" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", marginTop: "0.75rem", marginBottom: "2rem" }}>
+          Recent updates
+        </h2>
+      </FadeIn>
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        {items.map((n, i) => (
+          <FadeIn key={i} delay={i * 0.1}>
+            <div style={{ display: "flex", gap: "2rem", alignItems: "baseline" }}>
+              <span className="font-mono text-xs" style={{ color: "var(--accent)", fontWeight: 500, minWidth: 64 }}>{n.date}</span>
+              <p style={{ color: "var(--muted)", lineHeight: 1.8, fontSize: "0.95rem" }}>
+                {n.text}{" "}
+                <a href={n.link} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 500 }}>
+                  {n.linkLabel} →
+                </a>
+              </p>
+            </div>
+          </FadeIn>
+        ))}
+      </div>
     </section>
   );
 }
@@ -384,7 +422,7 @@ function Experience() {
     {
       company: "Ztrios Technologies Ltd.",
       role: "AI Developer",
-      period: "Sep 2025 — Present",
+      period: "Sep 2025 — Sep 2026",
       points: [
         "Built RAG pipelines with Bengali language support for production AI applications",
         "Fine-tuned Qwen3-4B using PEFT (LoRA, rank 16) for domain-specific tasks",
@@ -449,6 +487,26 @@ function Experience() {
             </div>
           </div>
         </FadeIn>
+
+        <FadeIn delay={0.4}>
+          <div style={{ marginTop: "3rem" }}>
+            <h3 style={{ fontWeight: 600, fontSize: "1rem", marginBottom: "1.25rem" }}>Languages</h3>
+            <div style={{ background: "var(--paper)", border: "1px solid var(--border)", borderRadius: 8, padding: "2rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <div>
+                <h4 style={{ fontWeight: 700, fontSize: "1rem" }}>Bengali</h4>
+                <p style={{ color: "var(--muted)", fontSize: "0.875rem", marginTop: "0.25rem" }}>Native</p>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
+                <div>
+                  <h4 style={{ fontWeight: 700, fontSize: "1rem" }}>English</h4>
+                  <p style={{ color: "var(--accent)", fontSize: "0.875rem", fontWeight: 500 }}>IELTS 7.0 overall</p>
+                  <p style={{ color: "var(--muted)", fontSize: "0.875rem", marginTop: "0.25rem" }}>Listening 7.5 · Reading 6.5 · Writing 7.0 · Speaking 6.5</p>
+                </div>
+                <span className="font-mono text-xs" style={{ color: "var(--muted)" }}>Oct 2026</span>
+              </div>
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
@@ -499,6 +557,7 @@ export default function Home() {
     <>
       <Nav />
       <Hero />
+      <News />
       <Journey />
       <Research />
       <Projects />
