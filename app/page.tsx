@@ -128,7 +128,11 @@ function Hero() {
 
 // ── News ─────────────────────────────────────────────────────────
 function News() {
-  const items = [
+  const items: { date: string; text: string; link?: string; linkLabel?: string }[] = [
+    {
+      date: "Nov 2026",
+      text: "Our manuscript \u201cBGCA-Fusion: Bidirectional Gated Cross-Attention for Multimodal Breast Cancer Diagnosis\u201d has been accepted for publication in Advanced Intelligent Systems (Wiley).",
+    },
     {
       date: "Oct 2026",
       text: "Achieved IELTS overall band 7.0, with no band below 6.5.",
@@ -152,9 +156,11 @@ function News() {
               <span className="font-mono text-xs" style={{ color: "var(--accent)", fontWeight: 500, minWidth: 64 }}>{n.date}</span>
               <p style={{ color: "var(--muted)", lineHeight: 1.8, fontSize: "0.95rem" }}>
                 {n.text}{" "}
-                <a href={n.link} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 500 }}>
-                  {n.linkLabel} →
-                </a>
+                {n.link && (
+                  <a href={n.link} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 500 }}>
+                    {n.linkLabel} →
+                  </a>
+                )}
               </p>
             </div>
           </FadeIn>
@@ -246,10 +252,10 @@ function Research() {
   const papers = [
     {
       title: "BGCA-Fusion: Bidirectional Gated Cross-Attention for Multimodal Breast Cancer Diagnosis",
-      venue: "Under review — Advanced Intelligent Systems (Wiley, IF 6.1)",
+      venue: "Accepted — Advanced Intelligent Systems (Wiley, IF 6.1)",
       desc: "Fused mammography image features (CNN + ViT) with clinical text (LLM) using bidirectional gated cross-attention. Validated with zero-shot cross-dataset generalisation and domain adaptation across three datasets.",
       tags: ["Multimodal", "Medical AI", "ViT", "XAI"],
-      status: "under-review",
+      status: "accepted",
     },
     {
       title: "Public Sentiment Analysis of the Israel-Palestine Conflict: A Reddit-Based Study",
@@ -284,13 +290,13 @@ function Research() {
 
   const statusStyle: Record<string, React.CSSProperties> = {
     published: { background: "var(--accent-light)", color: "var(--accent)" },
-    "under-review": { background: "#fff3cd", color: "#856404" },
+    accepted: { background: "var(--accent-light)", color: "var(--accent)" },
     ongoing: { background: "#e8f0fe", color: "#3a5cbf" },
     thesis: { background: "var(--surface)", color: "var(--muted)" },
   };
   const statusLabel: Record<string, string> = {
     published: "Published",
-    "under-review": "Under Review",
+    accepted: "Accepted",
     ongoing: "Ongoing",
     thesis: "Thesis",
   };
